@@ -1,5 +1,7 @@
 # Project Euler
 # Problem 1
+# import numpy
+# from bs4 import BeautifulSoup
 
 
 def problem1(x):
@@ -15,7 +17,7 @@ def problem2():
     fib = [1]
     i = 2
     x = 2
-    result = 0
+    result: int = 0
 
     while x < 4000000:
         fib.append(x)
@@ -23,11 +25,11 @@ def problem2():
         i += 1
 
     for i in fib:
-        if (i % 2 == 0):
+        if 0 == i % 2:
             result += i
 
-    print(result)
+    return result
 
 
 # a = int(input("Please enter integer value - "))
-print(problem2())
+print(problem1(10))
