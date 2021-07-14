@@ -1,7 +1,6 @@
 # Project Euler
-# Problem 1
-# import numpy
-# from bs4 import BeautifulSoup
+import math
+import time
 
 
 def problem1(x):
@@ -31,5 +30,31 @@ def problem2():
     return result
 
 
+def problem3():
+    num = 600851475143
+
+    lst = [2]
+    x = []
+    start_time = time.process_time()
+
+    for i in range(3, int((math.sqrt(num)) + 1), 2):
+        if (i > 10) and (i % 10 == 5):
+            continue
+        for j in lst:
+            if j > int((math.sqrt(i)) + 1):
+                lst.append(i)
+                if num % i == 0:
+                    x.append(i)
+                break
+            if i % j == 0:
+                break
+        else:
+            lst.append(i)
+
+    print(time.process_time() - start_time)
+    print(lst)
+    print(x)
+
+
 # a = int(input("Please enter integer value - "))
-print(problem1(10))
+problem3()
