@@ -56,5 +56,14 @@ def problem3():
     print(x)
 
 
+def problem48():
+    start_time = time.process_time()
+    x = 0
+    for i in range(1, 1001):
+        x += i ** i
+    # print(time.process_time() - start_time)
+    return str(x)[-10:]
+
+
 # a = int(input("Please enter integer value - "))
-problem3()
+print(problem48())
