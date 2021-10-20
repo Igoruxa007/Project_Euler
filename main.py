@@ -61,9 +61,19 @@ def problem48():
     x = 0
     for i in range(1, 1001):
         x += i ** i
-    # print(time.process_time() - start_time)
+    print(time.process_time() - start_time)
     return str(x)[-10:]
 
 
+def spin_words(sentence):
+    s1 = []
+    for x in sentence.split(" "):
+        if len(x) >= 5:
+            s1.append(x[::-1])
+        else:
+            s1.append(x)
+    return " ".join(s1)
+
+
 # a = int(input("Please enter integer value - "))
-print(problem48())
+print(spin_words("Your sentence"))
