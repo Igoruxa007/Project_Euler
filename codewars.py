@@ -79,7 +79,14 @@ def make_readable(seconds):
 
 def make_readable_best(s):
     return '{:02}:{:02}:{:02}'.format(s // 3600, s // 60 % 60, s % 60)
-# _____________________________________________________________End Human Readable Time
 
 
-print(make_readable_best(62))
+# _____________________________________________________________Square(n) Sum
+def square_sum(numbers):
+    sum = 0
+    for num in numbers:
+        sum += num * num
+    return sum
+
+
+print(square_sum([1, 2]))
