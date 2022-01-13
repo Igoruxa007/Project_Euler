@@ -89,15 +89,31 @@ def square_sum(numbers):
     return sum
 
 
-#_____________________________________________________________ Isogram
+# _____________________________________________________________ Isogram
 def is_isogram(string):
     string = string.lower()
     for i in range(len(string)):
-        for j in range(i+1, len(string)):
+        for j in range(i + 1, len(string)):
             if string[i] == string[j]:
                 return False
                 break
     return True
 
 
-print(is_isogram("Dermatoglyphics"))
+# ________________________________________________________Who liks it?
+def likes(names=['']):
+    counter = len(names)
+    if counter == 1 and names[0] == '':
+        return "no one likes this"
+    elif counter == 1:
+        return names[0] + " likes this"
+    elif counter == 2:
+        return names[0] + " and " + names[1] + " likes this"
+    elif counter == 3:
+        return names[0] + ", " + names[1] + " and " + names[2] + " likes this"
+    else:
+        return names[0] + ", " + names[1] + " and " + str(counter-2) + " others like this"
+
+
+
+print(likes(['James', 'Iga', 'Ira','James', 'Iga', 'Ira']))
