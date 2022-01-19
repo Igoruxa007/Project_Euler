@@ -100,6 +100,20 @@ def is_isogram(string):
     return True
 
 
+# __________________________________________________________ Vovel Count
+def get_count(input_str):
+    char_tuple = ("a", "e", "i", "o", "u")
+    num_vowels = 0
+
+    for char in input_str:
+        for letter in char_tuple:
+            if char == letter:
+                num_vowels += 1
+                break
+
+    return num_vowels
+
+
 # ________________________________________________________Who liks it?
 def likes(names=['']):
     counter = len(names)
@@ -116,4 +130,4 @@ def likes(names=['']):
 
 
 
-print(likes(['James', 'Iga', 'Ira','James', 'Iga', 'Ira']))
+print(get_count('aijfnang'))
