@@ -100,4 +100,10 @@ def is_isogram(string):
     return True
 
 
-print(is_isogram("Dermatoglyphics"))
+# ______________________________________________________________ Create phone number
+def create_phone_number(n):
+    number = "({}{}{}) {}{}{}-{}{}{}{}".format(*n)
+    return number
+
+
+print(create_phone_number([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]))
