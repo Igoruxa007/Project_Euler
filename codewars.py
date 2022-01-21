@@ -89,11 +89,11 @@ def square_sum(numbers):
     return sum
 
 
-#_____________________________________________________________ Isogram
+# _____________________________________________________________ Isogram
 def is_isogram(string):
     string = string.lower()
     for i in range(len(string)):
-        for j in range(i+1, len(string)):
+        for j in range(i + 1, len(string)):
             if string[i] == string[j]:
                 return False
                 break
@@ -106,4 +106,16 @@ def create_phone_number(n):
     return number
 
 
-print(create_phone_number([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]))
+# ____________________________________________________________ Who like this
+def likes(names):
+    n = len(names)
+    return {
+        0: 'no one likes this',
+        1: '{} likes this',
+        2: '{} and {} like this',
+        3: '{}, {} and {} like this',
+        4: '{}, {} and {others} others like this'
+    }[min(4, n)].format(*names[:3], others=n-2)
+
+
+print(likes(["Alex", "Jacob", "Mark", "Max", "Irina"]))
