@@ -115,7 +115,85 @@ def likes(names):
         2: '{} and {} like this',
         3: '{}, {} and {} like this',
         4: '{}, {} and {others} others like this'
-    }[min(4, n)].format(*names[:3], others=n-2)
+    }[min(4, n)].format(**names[:3], others=n - 2)
 
 
-print(likes(["Alex", "Jacob", "Mark", "Max", "Irina"]))
+# ____________________________________________________________ Roman Numerals Encoder
+def roman_numerals_encoder(n):
+    units = {
+        0: '',
+        1: 'I',
+        2: 'II',
+        3: 'III',
+        4: 'IV',
+        5: 'V',
+        6: 'VI',
+        7: 'VII',
+        8: 'VIII',
+        9: 'IX'
+        }[n % 10]
+    ten = {
+        0: '',
+        1: 'X',
+        2: 'XX',
+        3: 'XXX',
+        4: 'XL',
+        5: 'L',
+        6: 'LX',
+        7: 'LXX',
+        8: 'LXXX',
+        9: 'XC'
+        }[n % 100 // 10]
+    hundred = {
+        0: '',
+        1: 'C',
+        2: 'CC',
+        3: 'CCC',
+        4: 'CD',
+        5: 'D',
+        6: 'DC',
+        7: 'DCC',
+        8: 'DCCC',
+        9: 'CM'
+    }[n % 1000 // 100]
+    over = (n // 1000) * 'M'
+    return over + hundred + ten + units
+
+def roman_numerals_encoder_solution(n):
+    roman_numerals = {1000:'M',
+                      900: 'CM',
+                      500: 'D',
+                      400: 'CD',
+                      100: 'C',
+                      90: 'XC',
+                      50: 'L',
+                      40: 'XL',
+                      10: 'X',
+                      9: 'IX',
+                      5: 'V',
+                      4: 'IV',
+                      1: 'I'
+    }
+    roman_string = ''
+    for key in sorted(roman_numerals.keys(),reverse=True):
+        while n >= key:
+            roman_string += roman_numerals[key]
+            n -= key
+    return roman_string
+
+
+# _____________________________________________________ Find the odd int
+def find_odd(seq):
+    odd_dict = {}
+    for number in seq:
+        if number in odd_dict:
+            odd_dict[number] = odd_dict[number] + 1
+        else:
+            odd_dict[number] = 1
+
+    for element in sorted(odd_dict.keys()):
+        if odd_dict[element] % 2 == 1:
+            return element
+            break
+
+print(find_odd([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]))
