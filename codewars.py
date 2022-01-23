@@ -1,3 +1,6 @@
+import math
+
+
 def pig_it(text):
     new_words = list()
     numbers = text.split(" ")
@@ -59,8 +62,7 @@ def times(y): return lambda x: x * y
 def divided_by(y): return lambda x: x / y
 
 
-# _____________________________________________________________Human Readable Time
-def smh_to_str(smh):
+def smh_to_str(smh):  # ______________________________Human Readable Time
     if len(str(smh)) == 1:
         return "0" + str(smh)
     else:
@@ -81,16 +83,14 @@ def make_readable_best(s):
     return '{:02}:{:02}:{:02}'.format(s // 3600, s // 60 % 60, s % 60)
 
 
-# _____________________________________________________________Square(n) Sum
-def square_sum(numbers):
+def square_sum(numbers):  # _____________________________Square(n) Sum
     sum = 0
     for num in numbers:
         sum += num * num
     return sum
 
 
-# _____________________________________________________________ Isogram
-def is_isogram(string):
+def is_isogram(string):  # ______________________________ Isogram
     string = string.lower()
     for i in range(len(string)):
         for j in range(i + 1, len(string)):
@@ -100,14 +100,12 @@ def is_isogram(string):
     return True
 
 
-# ______________________________________________________________ Create phone number
-def create_phone_number(n):
+def create_phone_number(n):  # _______________________________ Create phone number
     number = "({}{}{}) {}{}{}-{}{}{}{}".format(*n)
     return number
 
 
-# ____________________________________________________________ Who like this
-def likes(names):
+def likes(names):  # __________________________________________ Who like this
     n = len(names)
     return {
         0: 'no one likes this',
@@ -118,8 +116,7 @@ def likes(names):
     }[min(4, n)].format(**names[:3], others=n - 2)
 
 
-# ____________________________________________________________ Roman Numerals Encoder
-def roman_numerals_encoder(n):
+def roman_numerals_encoder(n):  # _________________________ Roman Numerals Encoder
     units = {
         0: '',
         1: 'I',
@@ -131,7 +128,7 @@ def roman_numerals_encoder(n):
         7: 'VII',
         8: 'VIII',
         9: 'IX'
-        }[n % 10]
+    }[n % 10]
     ten = {
         0: '',
         1: 'X',
@@ -143,7 +140,7 @@ def roman_numerals_encoder(n):
         7: 'LXX',
         8: 'LXXX',
         9: 'XC'
-        }[n % 100 // 10]
+    }[n % 100 // 10]
     hundred = {
         0: '',
         1: 'C',
@@ -159,8 +156,9 @@ def roman_numerals_encoder(n):
     over = (n // 1000) * 'M'
     return over + hundred + ten + units
 
+
 def roman_numerals_encoder_solution(n):
-    roman_numerals = {1000:'M',
+    roman_numerals = {1000: 'M',
                       900: 'CM',
                       500: 'D',
                       400: 'CD',
@@ -173,17 +171,16 @@ def roman_numerals_encoder_solution(n):
                       5: 'V',
                       4: 'IV',
                       1: 'I'
-    }
+                      }
     roman_string = ''
-    for key in sorted(roman_numerals.keys(),reverse=True):
+    for key in sorted(roman_numerals.keys(), reverse=True):
         while n >= key:
             roman_string += roman_numerals[key]
             n -= key
     return roman_string
 
 
-# _____________________________________________________ Find the odd int
-def find_odd(seq):
+def find_odd(seq):  # ______________________ Find the odd int
     odd_dict = {}
     for number in seq:
         if number in odd_dict:
@@ -196,4 +193,15 @@ def find_odd(seq):
             return element
             break
 
-print(find_odd([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]))
+
+def persistence(n):  # _______________________ Persistent Bugger
+    """ Function that takes in a positive parameter num and returns its multiplicative persistence,
+    which is the number of times you must multiply the digits in num until you reach a single digit."""
+    if n < 10:
+        return 0
+    else:
+        new_numeric = math.prod([int(a) for a in str(n)])
+        return persistence(new_numeric)+1
+
+
+print(persistence(39))
