@@ -204,4 +204,17 @@ def persistence(n):  # _______________________ Persistent Bugger
         return persistence(new_numeric)+1
 
 
-print(persistence(39))
+def find_uniq(arr): # ______________________ Find the unique number
+    if arr[0] != arr[1]:
+        if arr[0] == arr[2]:
+            return arr[1]
+        else:
+            return arr[0]
+    else: equal_number = arr[0]
+    for number in arr:
+        if number != equal_number:
+            return number
+            break
+
+
+print(find_uniq([ 0, 0, 0.55, 0, 0 ]))
