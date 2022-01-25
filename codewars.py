@@ -84,10 +84,10 @@ def make_readable_best(s):
 
 
 def square_sum(numbers):  # _____________________________Square(n) Sum
-    sum = 0
+    sum_of_num = 0
     for num in numbers:
-        sum += num * num
-    return sum
+        sum_of_num += num * num
+    return sum_of_num
 
 
 def is_isogram(string):  # ______________________________ Isogram
