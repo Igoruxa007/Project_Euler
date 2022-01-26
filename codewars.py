@@ -180,7 +180,10 @@ def roman_numerals_encoder_solution(n):
     return roman_string
 
 
-def find_odd(seq):  # ______________________ Find the odd int
+def find_odd(seq):
+    """Find the odd int
+
+    """
     odd_dict = {}
     for number in seq:
         if number in odd_dict:
@@ -194,9 +197,12 @@ def find_odd(seq):  # ______________________ Find the odd int
             break
 
 
-def persistence(n):  # _______________________ Persistent Bugger
-    """ Function that takes in a positive parameter num and returns its multiplicative persistence,
-    which is the number of times you must multiply the digits in num until you reach a single digit."""
+def persistence(n):
+    """Persistent Bugger
+    Function that takes in a positive parameter num and returns its multiplicative persistence,
+    which is the number of times you must multiply the digits in num until you reach a single digit.
+    """
+
     if n < 10:
         return 0
     else:
@@ -204,17 +210,34 @@ def persistence(n):  # _______________________ Persistent Bugger
         return persistence(new_numeric)+1
 
 
-def find_uniq(arr): # ______________________ Find the unique number
+def find_uniq(arr):
+    """Find the unique number
+
+    """
     if arr[0] != arr[1]:
         if arr[0] == arr[2]:
             return arr[1]
         else:
             return arr[0]
-    else: equal_number = arr[0]
+    else:
+        equal_number = arr[0]
     for number in arr:
         if number != equal_number:
             return number
             break
 
 
-print(find_uniq([ 0, 0, 0.55, 0, 0 ]))
+def high(x):
+    """Highest Scoring Word
+
+    """
+    price_of_words = list()
+    words = x.split()
+    for word in words:
+        x = 0
+        for letter in word:
+            x += ord(letter) - 96
+        price_of_words.append(x)
+    return words[price_of_words.index(max(price_of_words))]
+
+print(high('aaaa b x'))
