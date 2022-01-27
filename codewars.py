@@ -90,13 +90,15 @@ def square_sum(numbers):  # _____________________________Square(n) Sum
     return sum_of_num
 
 
-def is_isogram(string):  # ______________________________ Isogram
+def is_isogram(string):
+    """Isogram
+
+    """
     string = string.lower()
     for i in range(len(string)):
         for j in range(i + 1, len(string)):
             if string[i] == string[j]:
                 return False
-                break
     return True
 
 
@@ -194,7 +196,6 @@ def find_odd(seq):
     for element in sorted(odd_dict.keys()):
         if odd_dict[element] % 2 == 1:
             return element
-            break
 
 
 def persistence(n):
@@ -210,7 +211,7 @@ def persistence(n):
         return persistence(new_numeric)+1
 
 
-def find_uniq(arr):
+def find_unique(arr):
     """Find the unique number
 
     """
@@ -224,7 +225,6 @@ def find_uniq(arr):
     for number in arr:
         if number != equal_number:
             return number
-            break
 
 
 def high(x):
@@ -240,4 +240,23 @@ def high(x):
         price_of_words.append(x)
     return words[price_of_words.index(max(price_of_words))]
 
-print(high('aaaa b x'))
+
+def comp(array1, array2):
+    """Are they the "same"
+    Given two arrays a and b write a function comp(a, b) (orcompSame(a, b)) that checks whether the two arrays
+    have the "same" elements, with the same multiplicities (the multiplicity of a member is the number of times
+    it appears). "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.
+
+    """
+    new_a1 = set(array1)
+    for element_a1 in new_a1:
+        for element_a2 in array2:
+            if element_a1*element_a1 == element_a2:
+                break
+            return False
+    return new_a1, array2
+
+
+a1 = [121, 144, 19, 161, 19, 144, 19, 11]
+a2 = [11*11, 121*121, 144*144, 19*19, 161*161, 19*19, 144*144, 19*19]
+print(comp(a1, a2))
