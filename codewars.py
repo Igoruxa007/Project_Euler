@@ -208,7 +208,7 @@ def persistence(n):
         return 0
     else:
         new_numeric = math.prod([int(a) for a in str(n)])
-        return persistence(new_numeric)+1
+        return persistence(new_numeric) + 1
 
 
 def find_unique(arr):
@@ -247,16 +247,22 @@ def comp(array1, array2):
     have the "same" elements, with the same multiplicities (the multiplicity of a member is the number of times
     it appears). "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.
 
+    For this kata added two array a1 and a2 before print
     """
-    new_a1 = set(array1)
-    for element_a1 in new_a1:
-        for element_a2 in array2:
-            if element_a1*element_a1 == element_a2:
-                break
-            return False
-    return new_a1, array2
+
+    try:
+        return sorted([i ** 2 for i in array1]) == sorted(array2)
+    except:
+        return False
 
 
-a1 = [121, 144, 19, 161, 19, 144, 19, 11]
-a2 = [11*11, 121*121, 144*144, 19*19, 161*161, 19*19, 144*144, 19*19]
-print(comp(a1, a2))
+def dig_pow(a1, a2):
+    """Playing with digits
+
+    """
+    num_as_str = str(a1)
+    sum_of_number = sum([int(num_as_str[i])**(a2+i) for i in range(len(num_as_str))])
+    return a1//sum_of_number if a1 % sum_of_number == 0 else -1
+
+
+print(dig_pow(46288, 3))
