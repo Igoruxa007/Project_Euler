@@ -261,8 +261,44 @@ def dig_pow(a1, a2):
 
     """
     num_as_str = str(a1)
-    sum_of_number = sum([int(num_as_str[i])**(a2+i) for i in range(len(num_as_str))])
-    return a1//sum_of_number if a1 % sum_of_number == 0 else -1
+    sum_of_number = sum([int(num_as_str[i]) ** (a2 + i) for i in range(len(num_as_str))])
+    return a1 // sum_of_number if a1 % sum_of_number == 0 else -1
 
 
-print(dig_pow(46288, 3))
+def beeramid(bonus, price):
+    """Beeramid
+    A beer can pyramid will square the number of cans in each level - 1 can in the top level,
+    4 in the second, 9 in the next, 16, 25...
+    """
+    num_of_can = bonus / price
+    can_in_pyramid = 0
+    for i in range(1, 100):
+        can_in_pyramid += i ** 2
+        if num_of_can < can_in_pyramid:
+            return i - 1
+
+
+def snail(snail_map):
+    """Snail Sort
+
+    """
+    x = list()
+    for i in range(0, len(snail_map) // 2):
+        for j in range(i, len(snail_map) - i):
+            x.append(snail_map[i][j])
+        for j in range(i + 1, len(snail_map) - i - 1):
+            x.append(snail_map[j][-(i + 1)])
+        for j in range(len(snail_map) - i - 1, i - 1, -1):
+            x.append(snail_map[-i - 1][j])
+        for j in range(len(snail_map) - i - 2, i, -1):
+            x.append(snail_map[j][i])
+    if len(snail_map) % 2 > 0:
+        try:
+            x.append(snail_map[len(snail_map) // 2][len(snail_map) // 2])
+        except:
+            pass
+    return x
+
+
+array = [[]]
+print(snail(array))
