@@ -300,5 +300,21 @@ def snail(snail_map):
     return x
 
 
-array = [[]]
-print(snail(array))
+def score(dice):
+    x = 0
+    for i in range(2, 7):
+        if dice.count(i) >= 3:
+            x += i * 100
+    if dice.count(1) >= 3:
+        x += 1000
+        x += (dice.count(1) - 3) * 100
+    elif dice.count(1) < 3:
+        x += dice.count(1) * 100
+    if dice.count(5) > 3:
+        x += (dice.count(5) - 3) * 50
+    elif dice.count(5) < 3:
+        x += dice.count(5) * 50
+    return x
+
+
+print(score([1, 1, 1, 1, 3]))
