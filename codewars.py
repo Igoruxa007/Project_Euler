@@ -317,4 +317,8 @@ def score(dice):
     return x
 
 
-print(score([1, 1, 1, 1, 3]))
+def solution(string):
+    return "".join([x for x in reversed(string)])
+
+
+print(solution('world'))
