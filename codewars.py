@@ -321,4 +321,8 @@ def solution(string):
     return "".join([x for x in reversed(string)])
 
 
-print(solution('world'))
+def filter_list(list1):
+    return [x for x in list1 if isinstance(x, (int, float))]
+
+
+print(filter_list([1, 2, 'a', 'b']))
