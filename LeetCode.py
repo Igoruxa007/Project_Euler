@@ -24,8 +24,7 @@ def exercise():
 
 
 def exercise3(num):
-        int(numbers[0]) + int(numbers[1])
-        return num
+    return int(num[0]) + int(num[1])
 
 
 # чтение из потока двух цифр и вывод их суммы
