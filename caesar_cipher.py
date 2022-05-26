@@ -36,6 +36,7 @@ def demoving_shift(s, shift):
         else:
             new_s += letter
             shift += 1
+
     return new_s
 
 

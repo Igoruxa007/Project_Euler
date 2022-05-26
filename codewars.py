@@ -12,56 +12,6 @@ def pig_it(text):
     return ' '.join(new_words)
 
 
-def zero(f=None): return 0 if not f else f(0)
-
-
-def one(f=None): return 1 if not f else f(1)
-
-
-def two(f=None): return 2 if not f else f(2)
-
-
-def three(f=None): return 3 if not f else f(3)
-
-
-def four(f=None):
-    if not f:
-        return 4
-    else:
-        f(4)
-
-
-def five(f=None): return 5 if not f else f(5)
-
-
-def six(f=None): return 6 if not f else f(6)
-
-
-def seven(f=None):
-    if not f:
-        return 7
-    else:
-        f(7)
-
-
-def eight(f=None): return 8 if not f else f(8)
-
-
-def nine(f=None): return 9 if not f else f(9)
-
-
-def plus(y): return lambda x: x + y
-
-
-def minus(y): return lambda x: x - y
-
-
-def times(y): return lambda x: x * y
-
-
-def divided_by(y): return lambda x: x / y
-
-
 def smh_to_str(smh):  # ______________________________Human Readable Time
     if len(str(smh)) == 1:
         return "0" + str(smh)
@@ -325,4 +275,19 @@ def filter_list(list1):
     return [x for x in list1 if isinstance(x, (int, float))]
 
 
-print(filter_list([1, 2, 'a', 'b']))
+def same_structure_as(original, other):
+    """
+    Function to return True when its argument is an array that has the same nesting structures and same
+    corresponding length of nested arrays as the first array.
+    """
+    if isinstance(original, list) and isinstance(other, list) and len(original) == len(other):
+        for o1, o2 in zip(original, other):
+            if not same_structure_as(o1, o2): return False
+        return True
+    else:
+        return isinstance(original, list) and isinstance(other, list)
+
+
+a = [[1], []]
+b = [[],[]]
+print(same_structure_as(a, b))
