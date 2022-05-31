@@ -1,4 +1,5 @@
 import math
+from typing import Dict
 
 
 def pig_it(text):
@@ -288,6 +289,61 @@ def same_structure_as(original, other):
         return isinstance(original, list) and isinstance(other, list)
 
 
-a = [[1], []]
-b = [[],[]]
-print(same_structure_as(a, b))
+def number_int_to_str(number):
+    units = {0: '',
+             1: 'one',
+             2: 'two',
+             3: 'three',
+             4: 'four',
+             5: 'five',
+             6: 'six',
+             7: 'seven',
+             8: 'eight',
+             9: 'nine'}
+    t = {10: 'ten',
+         11: 'eleven',
+         12: 'twelve',
+         13: 'thirteen',
+         14: 'fourteen',
+         15: 'fifteen',
+         16: 'sixteen',
+         17: 'seventeen',
+         18: 'eighteen',
+         19: 'nineteen'}
+    dozens = {0: '',
+              1: '',
+              2: 'twenty ',
+              3: 'thirty ',
+              4: 'forty ',
+              5: 'fifty ',
+              6: 'sixty',
+              7: 'seventy',
+              8: 'eighty',
+              9: 'ninety'}
+    hundreds = {0: '',
+                1: 'one hundred ',
+                2: 'two hundred ',
+                3: 'three hundred ',
+                4: 'four hundred ',
+                5: 'five hundred ',
+                6: 'six hundred ',
+                7: 'seven hundred ',
+                8: 'eight hundred ',
+                9: 'nine hundred '}
+    number_in_str = hundreds[number//100]
+    if number % 100 > 19:
+        number_in_str += dozens[number % 100 // 10]
+        number_in_str += units[number % 10]
+    elif number % 100 > 9:
+        number_in_str += t[number % 100]
+    elif number==0:
+        number_in_str = 'zero'
+    else:
+        number_in_str += units[number % 10]
+    print(number_in_str)
+    return number_in_str
+
+
+arr = [50, 11]
+
+print(sorted(arr, key=lambda x: number_int_to_str(x)))
