@@ -1,4 +1,5 @@
 import math
+import re
 from typing import Dict
 
 
@@ -330,13 +331,13 @@ def number_int_to_str(number):
                 7: 'seven hundred ',
                 8: 'eight hundred ',
                 9: 'nine hundred '}
-    number_in_str = hundreds[number//100]
+    number_in_str = hundreds[number // 100]
     if number % 100 > 19:
         number_in_str += dozens[number % 100 // 10]
         number_in_str += units[number % 10]
     elif number % 100 > 9:
         number_in_str += t[number % 100]
-    elif number==0:
+    elif number == 0:
         number_in_str = 'zero'
     else:
         number_in_str += units[number % 10]
@@ -344,6 +345,23 @@ def number_int_to_str(number):
     return number_in_str
 
 
-arr = [50, 11]
+def pig_it(text) -> str:
+    new_text = text.split()
+    for i in range(len(new_text)):
+        if new_text[i].isalpha():
+            new_text[i]=new_text[i][1:]+new_text[i][0]+'ay'
+    return ' '.join(new_text)
 
-print(sorted(arr, key=lambda x: number_int_to_str(x)))
+
+def capitalaize_string(string):
+    new_phraze = ' '.join([word.capitalize() for word in string.split()])
+    print(new_phraze)
+
+
+def main():
+    input_phrase = input("Input phrase")
+    capitalaize_string(string=input_phrase)
+
+
+if __name__ == '__main__':
+    main()
