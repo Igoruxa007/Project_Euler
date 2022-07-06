@@ -354,14 +354,16 @@ def pig_it(text) -> str:
 
 
 def capitalaize_string(string):
-    new_phraze = ' '.join([word.capitalize() for word in string.split()])
+    new_phraze = {s:string.count(s) for s in string}
     print(new_phraze)
 
 
-def main():
-    input_phrase = input("Input phrase")
-    capitalaize_string(string=input_phrase)
+def accum(s):
+    return "-".join([(s[i].lower()*(i+1)).capitalize() for i in range(len(s))])
 
+def main():
+    s = "ZpglnRxqenU"
+    print(accum(s))
 
 if __name__ == '__main__':
     main()
