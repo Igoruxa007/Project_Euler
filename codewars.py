@@ -358,8 +358,18 @@ def printer_error(s):
     print(str(sum(map(lambda x: x in alphabet, s))) + '/' + str(len(s)))
 
 
+def capitalaize_string(string):
+    new_phraze = {s:string.count(s) for s in string}
+    print(new_phraze)
+
+
+def accum(s):
+    return "-".join([(s[i].lower()*(i+1)).capitalize() for i in range(len(s))])
+
+
 def main():
-    printer_error("asdfasdfasdf")
+    s = "ZpglnRxqenU"
+    print(accum(s))
 
 
 if __name__ == '__main__':
