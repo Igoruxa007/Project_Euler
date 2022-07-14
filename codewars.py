@@ -353,14 +353,13 @@ def pig_it(text) -> str:
     return ' '.join(new_text)
 
 
-def capitalaize_string(string):
-    new_phraze = ' '.join([word.capitalize() for word in string.split()])
-    print(new_phraze)
+def printer_error(s):
+    alphabet = 'abcdefghijklm'
+    print(str(sum(map(lambda x: x in alphabet, s))) + '/' + str(len(s)))
 
 
 def main():
-    input_phrase = input("Input phrase")
-    capitalaize_string(string=input_phrase)
+    printer_error("asdfasdfasdf")
 
 
 if __name__ == '__main__':
