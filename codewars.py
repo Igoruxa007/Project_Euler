@@ -1,6 +1,15 @@
 import math
 import re
-from typing import Dict
+import time
+
+
+def time_of_function(function):
+    def wrapped(*args):
+        start_time = time.perf_counter_ns()
+        res = function(*args)
+        print((time.perf_counter_ns() - start_time)/10**9)
+        return res
+    return wrapped
 
 
 def pig_it(text):
@@ -68,70 +77,6 @@ def likes(names):  # __________________________________________ Who like this
         3: '{}, {} and {} like this',
         4: '{}, {} and {others} others like this'
     }[min(4, n)].format(**names[:3], others=n - 2)
-
-
-def roman_numerals_encoder(n):  # _________________________ Roman Numerals Encoder
-    units = {
-        0: '',
-        1: 'I',
-        2: 'II',
-        3: 'III',
-        4: 'IV',
-        5: 'V',
-        6: 'VI',
-        7: 'VII',
-        8: 'VIII',
-        9: 'IX'
-    }[n % 10]
-    ten = {
-        0: '',
-        1: 'X',
-        2: 'XX',
-        3: 'XXX',
-        4: 'XL',
-        5: 'L',
-        6: 'LX',
-        7: 'LXX',
-        8: 'LXXX',
-        9: 'XC'
-    }[n % 100 // 10]
-    hundred = {
-        0: '',
-        1: 'C',
-        2: 'CC',
-        3: 'CCC',
-        4: 'CD',
-        5: 'D',
-        6: 'DC',
-        7: 'DCC',
-        8: 'DCCC',
-        9: 'CM'
-    }[n % 1000 // 100]
-    over = (n // 1000) * 'M'
-    return over + hundred + ten + units
-
-
-def roman_numerals_encoder_solution(n):
-    roman_numerals = {1000: 'M',
-                      900: 'CM',
-                      500: 'D',
-                      400: 'CD',
-                      100: 'C',
-                      90: 'XC',
-                      50: 'L',
-                      40: 'XL',
-                      10: 'X',
-                      9: 'IX',
-                      5: 'V',
-                      4: 'IV',
-                      1: 'I'
-                      }
-    roman_string = ''
-    for key in sorted(roman_numerals.keys(), reverse=True):
-        while n >= key:
-            roman_string += roman_numerals[key]
-            n -= key
-    return roman_string
 
 
 def find_odd(seq):
@@ -252,31 +197,6 @@ def snail(snail_map):
     return x
 
 
-def score(dice):
-    x = 0
-    for i in range(2, 7):
-        if dice.count(i) >= 3:
-            x += i * 100
-    if dice.count(1) >= 3:
-        x += 1000
-        x += (dice.count(1) - 3) * 100
-    elif dice.count(1) < 3:
-        x += dice.count(1) * 100
-    if dice.count(5) > 3:
-        x += (dice.count(5) - 3) * 50
-    elif dice.count(5) < 3:
-        x += dice.count(5) * 50
-    return x
-
-
-def solution(string):
-    return "".join([x for x in reversed(string)])
-
-
-def filter_list(list1):
-    return [x for x in list1 if isinstance(x, (int, float))]
-
-
 def same_structure_as(original, other):
     """
     Function to return True when its argument is an array that has the same nesting structures and same
@@ -290,80 +210,50 @@ def same_structure_as(original, other):
         return isinstance(original, list) and isinstance(other, list)
 
 
-def number_int_to_str(number):
-    units = {0: '',
-             1: 'one',
-             2: 'two',
-             3: 'three',
-             4: 'four',
-             5: 'five',
-             6: 'six',
-             7: 'seven',
-             8: 'eight',
-             9: 'nine'}
-    t = {10: 'ten',
-         11: 'eleven',
-         12: 'twelve',
-         13: 'thirteen',
-         14: 'fourteen',
-         15: 'fifteen',
-         16: 'sixteen',
-         17: 'seventeen',
-         18: 'eighteen',
-         19: 'nineteen'}
-    dozens = {0: '',
-              1: '',
-              2: 'twenty ',
-              3: 'thirty ',
-              4: 'forty ',
-              5: 'fifty ',
-              6: 'sixty',
-              7: 'seventy',
-              8: 'eighty',
-              9: 'ninety'}
-    hundreds = {0: '',
-                1: 'one hundred ',
-                2: 'two hundred ',
-                3: 'three hundred ',
-                4: 'four hundred ',
-                5: 'five hundred ',
-                6: 'six hundred ',
-                7: 'seven hundred ',
-                8: 'eight hundred ',
-                9: 'nine hundred '}
-    number_in_str = hundreds[number // 100]
-    if number % 100 > 19:
-        number_in_str += dozens[number % 100 // 10]
-        number_in_str += units[number % 10]
-    elif number % 100 > 9:
-        number_in_str += t[number % 100]
-    elif number == 0:
-        number_in_str = 'zero'
-    else:
-        number_in_str += units[number % 10]
-    print(number_in_str)
-    return number_in_str
-
-
 def pig_it(text) -> str:
     new_text = text.split()
     for i in range(len(new_text)):
         if new_text[i].isalpha():
-            new_text[i]=new_text[i][1:]+new_text[i][0]+'ay'
+            new_text[i] = new_text[i][1:] + new_text[i][0] + 'ay'
     return ' '.join(new_text)
 
 
-def capitalaize_string(string):
-    new_phraze = {s:string.count(s) for s in string}
-    print(new_phraze)
+def accum(text):
+    if not text:
+        return ''
+    new_text = [x.capitalize() for x in re.split('[-]|[_]', text)]
+    return text[0] + (new_text.pop(0).lower() + ''.join(new_text))[1:]
 
 
-def accum(s):
-    return "-".join([(s[i].lower()*(i+1)).capitalize() for i in range(len(s))])
+def last_digit(lst):
+    lastDigit = 1
+    for i in range(len(lst) - 1, -1, -1):
+        if lastDigit == 0:
+            lastDigit = 1
+        elif lastDigit == 1:
+            lastDigit = lst[i]
+        else:
+            lastDigit = lst[i]**(lastDigit%4+4)
+    return lastDigit%10
+
+
+class L(list):
+    n=0
+    def __init__(self):
+        self.n += 1
+
+
+def count_to_5():
+    for i in range(1,6):
+        yield i
 
 def main():
-    s = "ZpglnRxqenU"
-    print(accum(s))
+    c = count_to_5()
+    for i in c:
+        print(i)
+    for j in c:
+        print(j)
+
 
 if __name__ == '__main__':
     main()
