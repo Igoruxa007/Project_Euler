@@ -1,5 +1,4 @@
 import math
-import re
 import time
 
 
@@ -7,8 +6,9 @@ def time_of_function(function):
     def wrapped(*args):
         start_time = time.perf_counter_ns()
         res = function(*args)
-        print((time.perf_counter_ns() - start_time)/10**9)
+        print((time.perf_counter_ns() - start_time) / 10 ** 9)
         return res
+
     return wrapped
 
 
@@ -218,13 +218,6 @@ def pig_it(text) -> str:
     return ' '.join(new_text)
 
 
-def accum(text):
-    if not text:
-        return ''
-    new_text = [x.capitalize() for x in re.split('[-]|[_]', text)]
-    return text[0] + (new_text.pop(0).lower() + ''.join(new_text))[1:]
-
-
 def last_digit(lst):
     lastDigit = 1
     for i in range(len(lst) - 1, -1, -1):
@@ -233,26 +226,28 @@ def last_digit(lst):
         elif lastDigit == 1:
             lastDigit = lst[i]
         else:
-            lastDigit = lst[i]**(lastDigit%4+4)
-    return lastDigit%10
+            lastDigit = lst[i] ** (lastDigit % 4 + 4)
+    return lastDigit % 10
 
 
 class L(list):
-    n=0
+    n = 0
+
     def __init__(self):
         self.n += 1
 
 
 def count_to_5():
-    for i in range(1,6):
+    for i in range(1, 6):
         yield i
 
+
 def main():
-    c = count_to_5()
-    for i in c:
-        print(i)
-    for j in c:
-        print(j)
+    file = open("books.txt", "r")
+    books_names = file.readlines()
+    for names in books_names:
+        print(''.join([letter[0] for letter in names.split()]))
+    file.close()
 
 
 if __name__ == '__main__':
