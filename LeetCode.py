@@ -24,13 +24,20 @@ def exercise():
 
 
 def exercise3(num):
-        int(numbers[0]) + int(numbers[1])
-        return num
+    return int(num[0]) + int(num[1])
 
 
-# чтение из потока двух цифр и вывод их суммы
-str_in = sys.stdin.readlines()
-numbers = str_in[0].split(" ")
-string = str(int(numbers[0]) + int(numbers[1]))
-sys.stdout.write(string)
-# print(exercise3(numbers))
+try:
+    a = int(input())
+    b = int(input())
+    c = int(input())
+    d = int(input())
+    print(' ', range(c, d+1), sep="\t")
+    for i in range(a, b+1):
+        x = [str(i)]
+        for j in range(c, d + 1):
+            x.append(str(i*j))
+        line = '\t'.join(x)
+        print(line)
+except:
+    pass
