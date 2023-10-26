@@ -250,5 +250,14 @@ def main():
     file.close()
 
 
+def duplicate_count(text):
+    text = str.lower(text)
+    num = list()
+    for symbol in set(text):
+        num.append(text.count(symbol))
+    num = [val for val in num if val != 1]
+    return len(num)
+
+
 if __name__ == '__main__':
-    main()
+    print(duplicate_count("abcdeaB"))
