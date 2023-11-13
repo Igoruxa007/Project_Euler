@@ -258,6 +258,5 @@ def duplicate_count(text):
     num = [val for val in num if val != 1]
     return len(num)
 
-
 if __name__ == '__main__':
     print(duplicate_count("abcdeaB"))
